@@ -10,5 +10,5 @@ const formatCommand = 'prettier --write';
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': [formatCommand, eslintCommand],
-  '!*.{js,jsx,ts,tsx}': [formatCommand],
+  '*.{css,scss,sass,md,json}': [formatCommand],
 };

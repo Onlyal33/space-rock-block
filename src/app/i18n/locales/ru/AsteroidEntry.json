@@ -1,0 +1,12 @@
+{
+  "date": "{{val, datetime}}",
+  "kilometers_one": "{{count, number(maximumFractionDigits: 0)}} километр",
+  "kilometers_few": "{{count, number(maximumFractionDigits: 0)}} километра",
+  "kilometers_many": "{{count, number(maximumFractionDigits: 0)}} километров",
+  "lunar_one": "{{count, number(maximumFractionDigits: 0)}} лунная орбита",
+  "lunar_few": "{{count, number(maximumFractionDigits: 0)}} лунные орбиты",
+  "lunar_many": "{{count, number(maximumFractionDigits: 0)}} лунных орбит",
+  "order": "ЗАКАЗАТЬ",
+  "hazardous": "⚠ Опасен",
+  "size": "Ø {{count, number(maximumFractionDigits: 0)}} м"
+}

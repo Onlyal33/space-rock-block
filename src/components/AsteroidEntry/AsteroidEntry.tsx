@@ -4,8 +4,8 @@ import Image from 'next/image';
 import leftArrow from '../../../public/left-arrow.svg';
 import rigthArrow from '../../../public/right-arrow.svg';
 import asteroid from '../../../public/asteroid.png';
-import { formatDate } from '@/utils/format';
 import styles from './AsteroidEntry.module.css';
+import { useTranslation } from '@/app/i18n/client';
 
 interface AsteroidShort {
   id: number;
@@ -15,6 +15,7 @@ interface AsteroidShort {
   closeApproachDate: Date;
   missDistance: { lunar: number; kilometers: number };
   distanceUnits?: 'kilometers' | 'lunar';
+  lng: string;
 }
 
 const LARGE_SIZE_TRESHOLD = 1000;
@@ -27,20 +28,30 @@ export default function AsteroidEntry({
   closeApproachDate,
   missDistance,
   distanceUnits = 'lunar',
+  lng,
 }: AsteroidShort) {
-  const distanceText =
-    distanceUnits === 'kilometers' ? ' километров' : ' лунных орбит';
+  const { t } = useTranslation(lng, 'AsteroidEntry');
 
   return (
     <div className={styles.container}>
       <div className={styles.headerFooterContainer}>
-        <h2 className={styles.date}>{formatDate(closeApproachDate)}</h2>
+        <h2 className={styles.date}>
+          {t('date', {
+            val: closeApproachDate,
+            formatParams: {
+              val: {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              },
+            },
+          })}
+        </h2>
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.distanceContainer}>
           <div className={styles.distanceText}>
-            {missDistance[distanceUnits]}
-            {distanceText}
+            {t(distanceUnits, { count: missDistance[distanceUnits] })}
           </div>
           <div className={styles.svgContainer}>
             <Image src={leftArrow} alt="" />
@@ -74,16 +85,16 @@ export default function AsteroidEntry({
         </div>
         <div className={styles.sizeContainer}>
           <span className={styles.typeText}>{name}</span>
-          <span className={styles.sizeText}>Ø {size} м</span>
+          <span className={styles.sizeText}>{t('size', { count: size })}</span>
         </div>
       </div>
       <div className={styles.headerFooterContainer}>
         <button className={styles.orderButton}>
-          <span className={styles.buttonText}>ЗАКАЗАТЬ</span>
+          <span className={styles.buttonText}>{t('order')}</span>
         </button>
         {isHazardous && (
           <span className={classNames(styles.dangerText, styles.bodySmall)}>
-            ⚠ Опасен
+            {t('hazardous')}
           </span>
         )}
       </div>

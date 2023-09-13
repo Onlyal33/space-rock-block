@@ -1,0 +1,10 @@
+{
+  "date": "{{val, datetime}}",
+  "kilometers_one": "{{count, number(maximumFractionDigits: 0)}} kilometer",
+  "kilometers_other": "{{count, number(maximumFractionDigits: 0)}} kilometers",
+  "lunar_one": "{{count, number(maximumFractionDigits: 0)}} lunar orbit",
+  "lunar_other": "{{count, number(maximumFractionDigits: 0)}} lunar orbits",
+  "order": "ORDER",
+  "hazardous": "⚠ Hazardous",
+  "size": "Ø {{count, number(maximumFractionDigits: 0)}} m"
+}

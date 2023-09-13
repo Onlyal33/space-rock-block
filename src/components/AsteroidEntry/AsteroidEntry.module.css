@@ -13,7 +13,6 @@
 }
 
 .date {
-  composes: h2 from global;
   flex: 1 0 0;
 
   color: var(--White-Base, #fff);

@@ -34,7 +34,7 @@ export default function AsteroidEntry({
   return (
     <div className={styles.container}>
       <div className={styles.headerFooterContainer}>
-        <span className={styles.date}>{formatDate(closeApproachDate)}</span>
+        <h2 className={styles.date}>{formatDate(closeApproachDate)}</h2>
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.distanceContainer}>

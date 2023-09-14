@@ -28,7 +28,7 @@ export default function AsteroidEntryGroup({
 
     const observer = new IntersectionObserver(
       async (entries: IntersectionObserverEntry[]) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !isLoading) {
           setIsLoading(true);
           const res = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/feed?page=${page + 1}`,
@@ -49,7 +49,7 @@ export default function AsteroidEntryGroup({
     return () => {
       target && observer.unobserve(target);
     };
-  }, [page]);
+  }, [page, isLoading]);
 
   return (
     <>

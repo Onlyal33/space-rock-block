@@ -38,8 +38,7 @@
   composes: bodyRegular from global;
   color: #fff;
   text-align: center;
-
-  width: fit-content;
+  align-self: center;
 }
 
 .imageContainer {

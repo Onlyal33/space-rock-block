@@ -5,13 +5,13 @@ import {
   useDistanceUnits,
   useUnitsSwitcher,
 } from '@/contexts/distanceUnitsContext';
-import styles from './AsteroidEntryGroup.module.css';
+import styles from './UnitsSwitcher.module.css';
 
 export default function UnitsSwitcher({ lng }: { lng: string }) {
   const switchUnits = useUnitsSwitcher();
   const distanceUnits = useDistanceUnits();
 
-  const { t } = useTranslation(lng, 'AsteroidEntryGroup');
+  const { t } = useTranslation(lng, 'UnitsSwitcher');
 
   return (
     <div className={styles.text}>

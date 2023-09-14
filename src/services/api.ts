@@ -38,7 +38,7 @@ const mockAsteroidShortData = {
   name: '465633 (2009 JR5)',
   size: 485,
   isHazardous: true,
-  closeApproachDate: new Date('2015-09-08'),
+  closeApproachDate: '2015-09-08',
   missDistance: {
     lunar: 118,
     kilometers: 45290298,
@@ -57,9 +57,13 @@ api_key	string	DEMO_KEY	api.nasa.gov key for expanded usage
 Example query
 https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY */
 
-export async function fetchtAsteroidsFeed(): Promise<AsteroidShort[]> {
-  const today = new Date();
-  const currentDate = today.toLocaleDateString('swe', {
+export async function fetchtAsteroidsFeed(
+  page: number,
+): Promise<AsteroidShort[]> {
+  const date = new Date();
+  date.setDate(date.getDate() + page);
+
+  const formattedDate = date.toLocaleDateString('swe', {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -67,20 +71,19 @@ export async function fetchtAsteroidsFeed(): Promise<AsteroidShort[]> {
 
   const res = await fetch(
     `${
-      process.env.API_URL
-    }/feed?start_date=${currentDate}&end_date=${currentDate}&api_key=${
+      process.env.NASA_API_URL
+    }/feed?start_date=${formattedDate}&end_date=${formattedDate}&api_key=${
       process.env.API_KEY || 'DEMO_KEY'
     }`,
   );
+
   const json: AsteroidsFeed = await res.json();
 
-  return json.near_earth_objects[currentDate].map((item) => ({
+  return json.near_earth_objects[formattedDate].map((item) => ({
     id: item.id,
     isHazardous: item.is_potentially_hazardous_asteroid,
     size: Math.round(item.estimated_diameter.meters.estimated_diameter_max),
-    closeApproachDate: new Date(
-      item.close_approach_data[0].close_approach_date,
-    ),
+    closeApproachDate: item.close_approach_data[0].close_approach_date,
     name: item.name,
     missDistance: {
       kilometers: Math.round(

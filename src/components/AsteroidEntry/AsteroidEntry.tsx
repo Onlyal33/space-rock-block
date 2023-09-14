@@ -1,8 +1,10 @@
+'use client';
+
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useTranslation } from '@/app/i18n';
+import { useTranslation } from '@/app/i18n/client';
 import leftArrow from '../../../public/left-arrow.svg';
 import rigthArrow from '../../../public/right-arrow.svg';
 import asteroid from '../../../public/asteroid.png';
@@ -14,7 +16,7 @@ export interface AsteroidShort {
   name: string;
   size: number;
   isHazardous: boolean;
-  closeApproachDate: Date;
+  closeApproachDate: string;
   missDistance: { lunar: number; kilometers: number };
 }
 
@@ -24,7 +26,7 @@ interface AsteroidEntryInterface extends AsteroidShort {
 
 const LARGE_SIZE_TRESHOLD = 1000;
 
-export default async function AsteroidEntry({
+export default function AsteroidEntry({
   id,
   name,
   size,
@@ -33,7 +35,7 @@ export default async function AsteroidEntry({
   missDistance,
   lng,
 }: AsteroidEntryInterface) {
-  const { t } = await useTranslation(lng, 'AsteroidEntry');
+  const { t } = useTranslation(lng, 'AsteroidEntry');
 
   return (
     <div className={styles.container}>
@@ -41,7 +43,7 @@ export default async function AsteroidEntry({
         <div className={styles.headerFooterContainer}>
           <h2 className={styles.date}>
             {t('date', {
-              val: closeApproachDate,
+              val: new Date(closeApproachDate),
               formatParams: {
                 val: {
                   year: 'numeric',

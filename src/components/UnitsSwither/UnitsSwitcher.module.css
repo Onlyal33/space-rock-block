@@ -1,0 +1,14 @@
+.text {
+  composes: bodyRegular from global;
+  color: var(--White-Base, #fff);
+}
+
+.inactive {
+  composes: text;
+  text-decoration-line: underline;
+}
+
+.active {
+  composes: text;
+  font-weight: 700;
+}

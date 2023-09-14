@@ -1,12 +1,14 @@
 {
   "date": "{{val, datetime}}",
-  "kilometers_one": "{{count, number(maximumFractionDigits: 0)}} километр",
-  "kilometers_few": "{{count, number(maximumFractionDigits: 0)}} километра",
-  "kilometers_many": "{{count, number(maximumFractionDigits: 0)}} километров",
-  "lunar_one": "{{count, number(maximumFractionDigits: 0)}} лунная орбита",
-  "lunar_few": "{{count, number(maximumFractionDigits: 0)}} лунные орбиты",
-  "lunar_many": "{{count, number(maximumFractionDigits: 0)}} лунных орбит",
+  "kilometers_one": "{{count, number}} километр",
+  "kilometers_few": "{{count, number}} километра",
+  "kilometers_many": "{{count, number}} километров",
+  "kilometers_other": "{{count, number}} километра",
+  "lunar_one": "{{count, number}} лунная орбита",
+  "lunar_few": "{{count, number}} лунные орбиты",
+  "lunar_many": "{{count, number}} лунных орбит",
+  "lunar_other": "{{count, number}} лунных орбит",
   "order": "ЗАКАЗАТЬ",
   "hazardous": "⚠ Опасен",
-  "size": "Ø {{count, number(maximumFractionDigits: 0)}} м"
+  "size": "Ø {{count, number}} м"
 }

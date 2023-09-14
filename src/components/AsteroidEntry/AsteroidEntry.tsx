@@ -16,6 +16,9 @@ export interface AsteroidShort {
   isHazardous: boolean;
   closeApproachDate: Date;
   missDistance: { lunar: number; kilometers: number };
+}
+
+interface AsteroidEntryInterface extends AsteroidShort {
   lng: string;
 }
 
@@ -29,7 +32,7 @@ export default async function AsteroidEntry({
   closeApproachDate,
   missDistance,
   lng,
-}: AsteroidShort) {
+}: AsteroidEntryInterface) {
   const { t } = await useTranslation(lng, 'AsteroidEntry');
 
   return (

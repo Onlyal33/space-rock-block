@@ -1,9 +1,10 @@
-'use client';
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useTranslation } from '@/app/i18n/';
+import DistanceUnitsProvider from '@/contexts/distanceUnitsContext';
 import AsteroidEntry from '../AsteroidEntry/AsteroidEntry';
 import styles from './AsteroidEntryGroup.module.css';
-import classNames from 'classnames';
-import { useTranslation } from '@/app/i18n/client';
+
+const UnitsSwitcher = dynamic(() => import('./UnitsSwitcher'));
 
 const data = {
   id: 465633,
@@ -17,45 +18,20 @@ const data = {
   },
 };
 
-export default function AsteroidEntryGroup({ lng = 'en' }) {
-  const [distanceUnits, setDistanceUnits] = useState<'lunar' | 'kilometers'>(
-    'lunar',
-  );
-
-  const { t } = useTranslation(lng, 'AsteroidEntryGroup');
+export default async function AsteroidEntryGroup({ lng }: { lng: string }) {
+  const { t } = await useTranslation(lng, 'AsteroidEntryGroup');
 
   return (
     <div className={styles.container}>
-      <div className={styles.headerContainer}>
-        <h1 className={styles.header}>{t('title')}</h1>
-        <div className={styles.text}>
-          <a
-            className={
-              distanceUnits === 'kilometers' ? styles.active : styles.inactive
-            }
-            onClick={() => setDistanceUnits('kilometers')}
-          >
-            {t('kilometers')}
-          </a>
-          {' | '}
-          <a
-            className={
-              distanceUnits === 'lunar' ? styles.active : styles.inactive
-            }
-            onClick={() => setDistanceUnits('lunar')}
-          >
-            {t('lunar')}
-          </a>
+      <DistanceUnitsProvider>
+        <div className={styles.headerContainer}>
+          <h1 className={styles.header}>{t('title')}</h1>
+          <UnitsSwitcher lng={lng} />
         </div>
-      </div>
-      {[1, 2, 4, 5].map((e) => (
-        <AsteroidEntry
-          key={data.id}
-          {...data}
-          distanceUnits={distanceUnits}
-          lng={lng}
-        />
-      ))}
+        {[1, 2, 4, 5].map((e) => (
+          <AsteroidEntry key={data.id} {...data} lng={lng} />
+        ))}
+      </DistanceUnitsProvider>
     </div>
   );
 }

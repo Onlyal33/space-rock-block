@@ -66,7 +66,11 @@ export async function fetchtAsteroidsFeed(): Promise<AsteroidShort[]> {
   });
 
   const res = await fetch(
-    `https://api.nasa.gov/neo/rest/v1/feed?start_date=${currentDate}&end_date=${currentDate}&api_key=DEMO_KEY`,
+    `${
+      process.env.API_URL
+    }/feed?start_date=${currentDate}&end_date=${currentDate}&api_key=${
+      process.env.API_KEY || 'DEMO_KEY'
+    }`,
   );
   const json: AsteroidsFeed = await res.json();
 

@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { dir } from 'i18next';
 import Header from '@/components/Header/Header';
+import CartProvider from '@/contexts/cartContext';
 import { languages } from '../i18n/settings';
 import { openSans } from './fonts';
 
@@ -27,7 +28,7 @@ export default function RootLayout({
     <html lang={lng} dir={dir(lng)}>
       <body className={openSans.className}>
         <Header lng={lng} />
-        {children}
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

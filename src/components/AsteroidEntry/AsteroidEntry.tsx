@@ -10,6 +10,7 @@ import rigthArrow from '../../../public/right-arrow.svg';
 import asteroid from '../../../public/asteroid.png';
 import styles from './AsteroidEntry.module.css';
 import DistanceToEarth from './DistanceToEarth';
+import OrderButton from '../OrderButton/OrderButton';
 
 export interface AsteroidShort {
   id: number;
@@ -41,7 +42,7 @@ export default function AsteroidEntry({
     <div className={styles.container}>
       <Link href={`/${lng}/asteroid/${id}`}>
         <div className={styles.headerFooterContainer}>
-          <h2 className={styles.date}>
+          <h2>
             {t('date', {
               val: new Date(closeApproachDate),
               formatParams: {
@@ -96,13 +97,9 @@ export default function AsteroidEntry({
         </div>
       </Link>
       <div className={styles.headerFooterContainer}>
-        <button className={styles.orderButton}>
-          <span className={styles.buttonText}>{t('order')}</span>
-        </button>
+        <OrderButton lng={lng} id={id} />
         {isHazardous && (
-          <span className={classNames(styles.dangerText, styles.bodySmall)}>
-            {t('hazardous')}
-          </span>
+          <span className={styles.dangerText}>{t('hazardous')}</span>
         )}
       </div>
     </div>

@@ -14,7 +14,7 @@ export default async function Header({ lng }: { lng: string }) {
           {t('title')}
         </h1>
       </Link>
-      <div className={styles.subtitle}>{t('subtitle')}</div>
+      <div>{t('subtitle')}</div>
     </header>
   );
 }

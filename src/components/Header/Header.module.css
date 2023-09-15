@@ -11,10 +11,3 @@
   color: var(--Orange-Base, #f86600);
   font-size: 2rem;
 }
-
-.subtitle {
-  composes: bodyRegular from global;
-  align-self: stretch;
-
-  color: var(--White-Base, #fff);
-}

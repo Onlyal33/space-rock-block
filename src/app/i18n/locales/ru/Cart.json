@@ -1,0 +1,8 @@
+{
+  "cart": "Корзина",
+  "counter_one": "{{count, number}} астероид",
+  "counter_few": "{{count, number}} астероида",
+  "counter_many": "{{count, number}} астероидов",
+  "counter_other": "{{count, number}} астероида",
+  "send": "Отправить"
+}

@@ -1,0 +1,6 @@
+{
+  "cart": "Cart",
+  "counter_one": "{{count, number}} asteroid",
+  "counter_other": "{{count, number}} asteroids",
+  "send": "Send"
+}

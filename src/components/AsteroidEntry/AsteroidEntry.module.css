@@ -12,12 +12,6 @@
   align-self: stretch;
 }
 
-.date {
-  flex: 1 0 0;
-
-  color: var(--White-Base, #fff);
-}
-
 .mainContainer {
   display: flex;
   align-items: flex-start;
@@ -35,8 +29,6 @@
 }
 
 .distanceText {
-  composes: bodyRegular from global;
-  color: #fff;
   text-align: center;
   align-self: center;
 }
@@ -72,39 +64,16 @@
 }
 
 .typeText {
-  composes: bodyRegular from global;
-  color: var(--White-Base, #fff);
   font-weight: 700;
   text-decoration-line: underline;
 }
 
 .sizeText {
   composes: bodyMicro from global;
-  color: var(--White-Base, #fff);
-}
-
-.orderButton {
-  display: flex;
-  padding: 2px 11px;
-  align-items: center;
-  gap: 2px;
-
-  border-width: 0;
-  border-radius: 1rem;
-  background: var(--Orange-Smooth, rgba(248, 102, 0, 0.15));
-}
-
-.buttonText {
-  color: var(--Orange-Base, #f86600);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  line-height: 1.25rem; /* 181.818% */
-  letter-spacing: 0.0625rem;
 }
 
 .dangerText {
   composes: bodySmall from global;
-  color: var(--gray-30, #e3e5e5);
 }
 
 .svgContainer {

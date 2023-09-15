@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  max-width: 375px;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.title {
+  color: var(--Orange-Base, #f86600);
+  font-size: 2rem;
+}
+
+.subtitle {
+  composes: bodyRegular from global;
+  align-self: stretch;
+
+  color: var(--White-Base, #fff);
+}

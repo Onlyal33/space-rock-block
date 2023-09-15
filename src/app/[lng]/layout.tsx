@@ -1,10 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
 import { dir } from 'i18next';
+import Header from '@/components/Header/Header';
 import { languages } from '../i18n/settings';
-
-const openSans = Open_Sans({ subsets: ['latin', 'cyrillic'] });
+import { openSans } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Space Rock Blocker',
@@ -26,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang={lng} dir={dir(lng)}>
-      <body className={openSans.className}>{children}</body>
+      <body className={openSans.className}>
+        <Header lng={lng} />
+        {children}
+      </body>
     </html>
   );
 }

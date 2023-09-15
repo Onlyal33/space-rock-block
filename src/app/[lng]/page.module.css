@@ -1,10 +1,29 @@
-.container {
+.main {
+  --gap-x: calc(100vw / 20);
+  --gap-y: calc(100vh / 8.5);
+  --earth-height: calc(100vh - var(--gap-y) * 2);
+  --earth-width: calc(var(--earth-height) * 0.7);
+  --feed-width: 280px;
+
+  display: flex;
+  position: relative;
+  gap: var(--gap-x);
+  left: min(100vw - var(--earth-width) - var(--feed-width) - var(--gap-x), 0px);
+}
+
+@media (min-width: 576px) {
+  .main {
+    --feed-width: 400px;
+  }
+}
+
+.feedContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
 
-  max-width: 330px;
+  flex: 0 0 var(--feed-width);
 }
 
 .headerContainer {
@@ -19,4 +38,12 @@
   align-self: stretch;
 
   color: var(--White-Base, #fff);
+}
+
+.earth {
+  height: var(--earth-height);
+  width: var(--earth-width);
+
+  position: sticky;
+  top: var(--gap-y);
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { AsteroidShort } from '@/components/AsteroidEntry/AsteroidEntry';
 import {
   Dispatch,
   ReactNode,
@@ -8,7 +9,7 @@ import {
   useReducer,
 } from 'react';
 
-const CartContext = createContext<number[]>([]);
+const CartContext = createContext<AsteroidShort[]>([]);
 
 const CartDispatchContext = createContext<Dispatch<CartAction>>(() => null);
 
@@ -39,16 +40,16 @@ export enum CartActionKind {
 
 interface CartAction {
   type: CartActionKind;
-  payload: number;
+  payload: AsteroidShort | null;
 }
 
-function cartReducer(cart: number[], action: CartAction): number[] {
+function cartReducer(cart: AsteroidShort[], action: CartAction) {
   switch (action.type) {
     case CartActionKind.ADDED: {
-      return [...cart, action.payload];
+      return action.payload ? [...cart, action.payload] : cart;
     }
     case CartActionKind.DELETED: {
-      return cart.filter((t) => t !== action.payload);
+      return cart.filter((t) => t.id !== action.payload?.id);
     }
     case CartActionKind.SENT: {
       return [];

@@ -1,3 +1,16 @@
+.cartContainer {
+  position: sticky;
+  bottom: 0px;
+}
+
+@media (min-width: 576px) {
+  .cartContainer {
+    position: relative;
+    left: var(--left-shift);
+    min-width: var(--cart-width);
+  }
+}
+
 .container {
   display: flex;
   padding: 1rem;

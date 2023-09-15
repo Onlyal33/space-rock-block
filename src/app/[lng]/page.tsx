@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useTranslation } from '@/app/i18n';
 import AsteroidEntryGroup from '@/components/AsteroidEntryGroup/AsteroidEntryGroup';
+import Cart from '@/components/Cart/Cart';
 import UnitsSwitcher from '@/components/UnitsSwither/UnitsSwitcher';
 import DistanceUnitsProvider from '@/contexts/distanceUnitsContext';
 import { fetchtAsteroidsFeed } from '@/services/api';
@@ -17,15 +18,25 @@ export default async function Home({
 
   return (
     <main className={styles.main}>
-      <Image src={earth} alt="Earth from space" className={styles.earth} />
-      <div className={styles.feedContainer}>
-        <DistanceUnitsProvider>
-          <div className={styles.headerContainer}>
-            <h1 className={styles.header}>{t('title')}</h1>
-            <UnitsSwitcher lng={lng} />
-          </div>
-          <AsteroidEntryGroup asteroids={asteroids} lng={lng} />
-        </DistanceUnitsProvider>
+      <div className={styles.earthAndFeedContainer}>
+        <Image
+          src={earth}
+          alt="Earth from space"
+          className={styles.earth}
+          priority
+        />
+        <div className={styles.feedContainer}>
+          <DistanceUnitsProvider>
+            <div className={styles.headerContainer}>
+              <h1>{t('title')}</h1>
+              <UnitsSwitcher lng={lng} />
+            </div>
+            <AsteroidEntryGroup asteroids={asteroids} lng={lng} />
+          </DistanceUnitsProvider>
+        </div>
+      </div>
+      <div className={styles.cartContainer}>
+        <Cart lng={lng} />
       </div>
     </main>
   );

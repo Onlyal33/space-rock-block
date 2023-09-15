@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+
+  background: var(--Black-Pearl, #232526);
+}
+
+@media (min-width: 576px) {
+  .container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 2rem;
+    position: sticky;
+    top: var(--gap-y);
+    height: fit-content;
+
+    border-radius: 1.5rem;
+  }
+}
+
+.button {
+  display: flex;
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+
+  border-width: 0;
+  border-radius: 2.5rem;
+  background: var(--Orange-Base, #f86600);
+}
+
+.buttonText {
+  composes: bodyRegular from global;
+  color: var(--White-Base, #fff);
+
+  font-weight: 700;
+}

@@ -9,6 +9,7 @@
   "lunar_many": "{{count, number}} лунных орбит",
   "lunar_other": "{{count, number}} лунных орбит",
   "order": "ЗАКАЗАТЬ",
+  "inCart": "В КОРЗИНЕ",
   "hazardous": "⚠ Опасен",
   "size": "Ø {{count, number}} м"
 }

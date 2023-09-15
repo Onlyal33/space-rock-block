@@ -54,7 +54,11 @@ export default function AsteroidEntryGroup({
   return (
     <>
       {astList.map((asteroid, idx) => (
-        <AsteroidEntry key={`${idx}-${asteroid.id}`} {...asteroid} lng={lng} />
+        <AsteroidEntry
+          key={`${idx}-${asteroid.id}`}
+          item={asteroid}
+          lng={lng}
+        />
       ))}
       {isLoading && <p style={{ color: 'white' }}>{t('loading')}</p>}
       <div ref={ref}></div>

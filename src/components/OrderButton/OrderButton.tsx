@@ -7,11 +7,18 @@ import {
   useCart,
   useCartDispatch,
 } from '@/contexts/cartContext';
+import { AsteroidShort } from '../AsteroidEntry/AsteroidEntry';
 
-export default function OrderButton({ lng, id }: { lng: string; id: number }) {
+export default function OrderButton({
+  lng,
+  item,
+}: {
+  lng: string;
+  item: AsteroidShort;
+}) {
   const { t } = useTranslation(lng, 'AsteroidEntry');
   const dispatch = useCartDispatch();
-  const isOrdered = useCart().includes(id);
+  const isOrdered = useCart().some((e) => e.id === item.id);
 
   return (
     <button
@@ -19,7 +26,7 @@ export default function OrderButton({ lng, id }: { lng: string; id: number }) {
       onClick={() => {
         dispatch({
           type: isOrdered ? CartActionKind.DELETED : CartActionKind.ADDED,
-          payload: id,
+          payload: item,
         });
       }}
     >

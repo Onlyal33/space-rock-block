@@ -1,13 +1,13 @@
 .feedContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1.5rem;
   min-width: var(--feed-width);
-  max-width: var(--feed-width);
 }
 
-.headerContainer {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
 }

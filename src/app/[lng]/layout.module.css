@@ -1,0 +1,52 @@
+.main {
+  --gap-x: 20px;
+  --gap-y: calc(100vh / 8.5);
+  --earth-height: calc(100vh - var(--gap-y) * 2);
+  --earth-width: calc(var(--earth-height) * 0.7);
+  --feed-width-base: 385px;
+  --feed-width: calc(var(--feed-width-base) - (440px - 100vw));
+  --left-shift: min(
+    100vw - var(--earth-width) - var(--feed-width) - var(--gap-x),
+    0px
+  );
+
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 440px) {
+  .main {
+    --gap-x: calc(100vw / 22);
+    --feed-width: var(--feed-width-base);
+  }
+}
+
+@media (min-width: 576px) {
+  .main {
+    flex-direction: row;
+  }
+
+  .main:has(:last-child[id='cart']) {
+    --cart-width: 9.375rem;
+    --left-shift: min(
+      100vw - var(--earth-width) - var(--feed-width) - var(--gap-x) -
+        var(--cart-width),
+      0px
+    );
+  }
+}
+
+.earthAndFeedContainer {
+  display: flex;
+  position: relative;
+  left: var(--left-shift);
+}
+
+.earth {
+  height: var(--earth-height);
+  width: var(--earth-width);
+
+  position: sticky;
+  top: var(--gap-y);
+  margin-right: var(--gap-x);
+}

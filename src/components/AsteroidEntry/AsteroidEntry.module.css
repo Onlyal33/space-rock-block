@@ -74,6 +74,8 @@
 
 .dangerText {
   composes: bodySmall from global;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .svgContainer {

@@ -8,6 +8,7 @@ import { useTranslation } from '@/app/i18n/client';
 import leftArrow from '../../../public/left-arrow.svg';
 import rigthArrow from '../../../public/right-arrow.svg';
 import asteroid from '../../../public/asteroid.png';
+import hazard from '../../../public/hazard.svg';
 import styles from './AsteroidEntry.module.css';
 import DistanceToEarth from './DistanceToEarth';
 import OrderButton from '../OrderButton/OrderButton';
@@ -97,7 +98,10 @@ export default function AsteroidEntry({
       <div className={styles.headerFooterContainer}>
         {!cart && <OrderButton lng={lng} item={item} />}
         {item.isHazardous && (
-          <span className={styles.dangerText}>{t('hazardous')}</span>
+          <span className={styles.dangerText}>
+            <Image src={hazard} alt="hazard icon" height={16} />
+            {t('hazardous')}
+          </span>
         )}
       </div>
     </div>

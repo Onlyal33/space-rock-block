@@ -6,6 +6,6 @@
   "lunar_other": "{{count, number}} lunar orbits",
   "order": "ORDER",
   "inCart": "IN CART",
-  "hazardous": "⚠ Hazardous",
+  "hazardous": "Hazardous",
   "size": "Ø {{count, number}} m"
 }

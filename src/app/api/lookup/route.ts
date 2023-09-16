@@ -5,7 +5,14 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { slug: string } },
 ) {
-  const slug = params.slug;
-  const data = await fetchtAsteroidData(slug);
-  return NextResponse.json(data);
+  if (params && params.slug) {
+    const slug = params.slug;
+    const data = await fetchtAsteroidData(slug);
+    return NextResponse.json(data);
+  } else {
+    return new NextResponse(null, {
+      statusText: 'Invalid parameters',
+      status: 400,
+    });
+  }
 }

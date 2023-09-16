@@ -74,6 +74,17 @@
       0px
     );
   }
+  /* fallback until mozilla adds :has support by default*/
+  @supports (-moz-box-sizing: content-box) {
+    .main {
+      --cart-width: 9.375rem;
+      --left-shift: min(
+        100vw - var(--earth-width) - var(--feed-width) - var(--gap-x) -
+          var(--cart-width),
+        0px
+      );
+    }
+  }
 }
 
 .earthAndFeedContainer {

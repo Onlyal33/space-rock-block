@@ -12,6 +12,46 @@
 
   display: flex;
   flex-direction: column;
+
+  background-image: url('../../../public/asteroid.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  -webkit-animation: slidein 30s;
+  animation: slidein 30s;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+}
+
+@keyframes slidein {
+  from,
+  20% {
+    background-position: 100vw calc(var(--gap-y) * 1.5);
+    background-size: 0%;
+  }
+  to {
+    background-position: calc(var(--earth-width) / 3 + var(--left-shift)) 100vh;
+    background-size: 35%;
+  }
+}
+
+@-webkit-keyframes slidein {
+  from,
+  20% {
+    background-position: 100vw calc(var(--gap-y) * 1.5);
+    background-size: 0%;
+  }
+  to {
+    background-position: calc(var(--earth-width) / 3 + var(--left-shift)) 100vh;
+    background-size: 35%;
+  }
 }
 
 @media (min-width: 440px) {
@@ -44,9 +84,13 @@
 
 .earth {
   height: var(--earth-height);
-  width: var(--earth-width);
+  min-width: var(--earth-width);
 
   position: sticky;
   top: var(--gap-y);
   margin-right: var(--gap-x);
+  background-image: url('../../../public/earth.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: right;
 }

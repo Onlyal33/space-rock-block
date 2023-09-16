@@ -39,7 +39,7 @@ export default function AsteroidEntry({
   return (
     <div className={styles.container}>
       <div className={styles.headerFooterContainer}>
-        <h2>
+        <h2 suppressHydrationWarning>
           {t('date', {
             val: new Date(item.closeApproachDate),
             formatParams: {

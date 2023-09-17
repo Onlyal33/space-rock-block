@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useTranslation } from '@/app/i18n/client';
 import leftArrow from '../../../public/left-arrow.svg';
 import rigthArrow from '../../../public/right-arrow.svg';
-import asteroid from '../../../public/asteroid.png';
+import asteroid from '../../../public/asteroid.webp';
 import hazard from '../../../public/hazard.svg';
 import styles from './AsteroidEntry.module.css';
 import DistanceToEarth from './DistanceToEarth';

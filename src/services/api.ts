@@ -1,36 +1,34 @@
 import { AsteroidShort } from '@/components/AsteroidEntry/AsteroidEntry';
 
 interface AsteroidsFeed {
-  links: {
-    next: string;
-    previous: string;
-    self: string;
-  };
-  element_count: number;
-  near_earth_objects: Record<string, AsteroidEvent[]>;
+  near_earth_objects: Record<string, Asteroid[]>;
 }
 
-interface AsteroidEvent {
-  links: {
-    self: string;
-  };
+interface Asteroid {
   id: number;
   name: string;
+  nasa_jpl_url: string;
   estimated_diameter: {
     meters: {
       estimated_diameter_max: number;
+      estimated_diameter_min: number;
     };
   };
   is_potentially_hazardous_asteroid: boolean;
-  close_approach_data: [
-    {
-      close_approach_date: string;
-      miss_distance: {
-        lunar: number;
-        kilometers: number;
-      };
-    },
-  ];
+  close_approach_data: CloseApproachData[];
+}
+
+interface CloseApproachData {
+  close_approach_date: string;
+  close_approach_date_full: string;
+  miss_distance: {
+    lunar: number;
+    kilometers: number;
+  };
+  relative_velocity: {
+    kilometers_per_second: number;
+  };
+  orbiting_body: string;
 }
 
 const mockAsteroidShortData = {
@@ -92,4 +90,40 @@ export async function fetchtAsteroidsFeed(
       lunar: Math.round(item.close_approach_data[0].miss_distance.lunar),
     },
   }));
+}
+
+export async function fetchtAsteroidData(id: string | number) {
+  const res = await fetch(
+    `${process.env.NASA_API_URL}/neo/${id}?api_key=${
+      process.env.API_KEY || 'DEMO_KEY'
+    }`,
+  );
+
+  const json: Asteroid = await res.json();
+
+  const closestApproachId = json.close_approach_data.findIndex(
+    (e) => new Date(e.close_approach_date_full) >= new Date(),
+  );
+
+  return {
+    id: json.id,
+    name: json.name,
+    nasa_jpl_url: json.nasa_jpl_url,
+    estimated_diameter_min: Math.round(
+      json.estimated_diameter.meters.estimated_diameter_min,
+    ),
+    estimated_diameter_max: Math.round(
+      json.estimated_diameter.meters.estimated_diameter_max,
+    ),
+    is_potentially_hazardous_asteroid: json.is_potentially_hazardous_asteroid,
+    closestApproachId,
+    close_approach_data: json.close_approach_data.map((d) => ({
+      close_approach_date: d.close_approach_date,
+      relative_velocity_kps:
+        Math.round(d.relative_velocity.kilometers_per_second * 100) / 100,
+      miss_distance_lunar: Math.round(d.miss_distance.lunar),
+      miss_distance_kilometers: Math.round(d.miss_distance.kilometers),
+      orbiting_body: d.orbiting_body,
+    })),
+  };
 }

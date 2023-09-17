@@ -1,0 +1,14 @@
+{
+  "nasaId": "NASA Id: ",
+  "estimated_diameter_min": "Ø min: {{val}} m",
+  "estimated_diameter_max": "Ø max: {{val}} m",
+  "date": "{{val, datetime}}",
+  "number": "{{count, number}}",
+  "tableTitle": "Approaches Data",
+  "close_approach_date": "CAD",
+  "relative_velocity_kps": "RV",
+  "miss_distance_lunar": "MDl",
+  "miss_distance_kilometers": "MDk",
+  "orbiting_body": "OB",
+  "tableDesc": "CAD: Close Approach Date, RV: Relative Velocity, kps, MDl: Miss Distance, lunar orbits, MDk: Miss Distance, km, OB: Orbiting Body"
+}

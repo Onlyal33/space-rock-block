@@ -1,0 +1,18 @@
+{
+  "nasaId": "№ NASA: ",
+  "estimated_diameter_min": "Ø мин.: {{val}} м",
+  "estimated_diameter_max": "Ø макс.: {{val}} м",
+  "date": "{{val, datetime}}",
+  "number": "{{count, number}}",
+  "tableTitle": "Данные о сближениях",
+  "close_approach_date": "ДС",
+  "relative_velocity_kps": "ОС",
+  "miss_distance_lunar": "МДл",
+  "miss_distance_kilometers": "МДк",
+  "orbiting_body": "НТ",
+  "tableDesc": "ДС: Дата сближения, ОС: Относительная скорость, км/с, МДл: Минимальная дистанция, в лунных орбитах, МДк: Минимальная дистанция, км, НТ: Небесное тело",
+  "Merc": "Меркурий",
+  "Venus": "Венера",
+  "Earth": "Земля",
+  "Mars": "Марс"
+}

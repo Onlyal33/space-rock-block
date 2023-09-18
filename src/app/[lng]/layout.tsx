@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { dir } from 'i18next';
+import { Analytics } from '@vercel/analytics/react';
 import Cart from '@/components/Cart/Cart';
 import Header from '@/components/Header/Header';
 import CartProvider from '@/contexts/cartContext';
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Cart lng={lng} />
           </main>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );

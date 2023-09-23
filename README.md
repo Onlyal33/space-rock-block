@@ -2,6 +2,8 @@
 
 This app allows user to get NASA data about asteroids that are on course to their closest approach to Earth, add them to cart, and send an order to deal with them 😄.
 
+Technology stack: TypeScript, React, Next.js, i18next
+
 It is deployed [here](https://space-rock-block.vercel.app/) - check it out!
 
 Project's design is largely based on [this figma file](https://www.figma.com/file/N9aUcWK3o189lZcwQyzU79/Armaggedon-V3).

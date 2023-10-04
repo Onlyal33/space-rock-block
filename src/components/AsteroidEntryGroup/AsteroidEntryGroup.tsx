@@ -7,12 +7,14 @@ import AsteroidEntry, { AsteroidShort } from '../AsteroidEntry/AsteroidEntry';
 export default function AsteroidEntryGroup({
   lng,
   asteroids,
+  initPage,
 }: {
   lng: string;
   asteroids: AsteroidShort[];
+  initPage: number;
 }) {
   const [astList, setAstList] = useState(asteroids);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(initPage);
   const [isLoading, setIsLoading] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);

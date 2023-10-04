@@ -21,6 +21,7 @@ interface Asteroid {
 interface CloseApproachData {
   close_approach_date: string;
   close_approach_date_full: string;
+  epoch_date_close_approach: number;
   miss_distance: {
     lunar: number;
     kilometers: number;
@@ -77,19 +78,25 @@ export async function fetchtAsteroidsFeed(
 
   const json: AsteroidsFeed = await res.json();
 
-  return json.near_earth_objects[formattedDate].map((item) => ({
-    id: item.id,
-    isHazardous: item.is_potentially_hazardous_asteroid,
-    size: Math.round(item.estimated_diameter.meters.estimated_diameter_max),
-    closeApproachDate: item.close_approach_data[0].close_approach_date,
-    name: item.name,
-    missDistance: {
-      kilometers: Math.round(
-        item.close_approach_data[0].miss_distance.kilometers,
-      ),
-      lunar: Math.round(item.close_approach_data[0].miss_distance.lunar),
-    },
-  }));
+  const now = Date.now();
+
+  return json.near_earth_objects[formattedDate]
+    .filter(
+      (item) => item.close_approach_data[0].epoch_date_close_approach > now,
+    )
+    .map((item) => ({
+      id: item.id,
+      isHazardous: item.is_potentially_hazardous_asteroid,
+      size: Math.round(item.estimated_diameter.meters.estimated_diameter_max),
+      closeApproachDate: item.close_approach_data[0].close_approach_date,
+      name: item.name,
+      missDistance: {
+        kilometers: Math.round(
+          item.close_approach_data[0].miss_distance.kilometers,
+        ),
+        lunar: Math.round(item.close_approach_data[0].miss_distance.lunar),
+      },
+    }));
 }
 
 export async function fetchtAsteroidData(id: string | number) {

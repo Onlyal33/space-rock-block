@@ -7,10 +7,15 @@ import styles from './page.module.css';
 
 export default async function Home({
   params: { lng },
+  searchParams: { page = '0' },
 }: {
   params: { lng: string };
+  searchParams: {
+    page: string;
+  };
 }) {
-  const asteroids = await fetchtAsteroidsFeed(0);
+  const initPage = Number(page);
+  const asteroids = await fetchtAsteroidsFeed(initPage);
   const { t } = await useTranslation(lng, 'translation');
 
   return (
@@ -20,7 +25,11 @@ export default async function Home({
           <h1>{t('title')}</h1>
           <UnitsSwitcher lng={lng} />
         </div>
-        <AsteroidEntryGroup asteroids={asteroids} lng={lng} />
+        <AsteroidEntryGroup
+          asteroids={asteroids}
+          lng={lng}
+          initPage={initPage}
+        />
       </DistanceUnitsProvider>
     </section>
   );

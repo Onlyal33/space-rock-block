@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import { useTranslation } from '@/app/i18n';
+import { getTranslation } from '@/app/i18n';
 import { passionOne } from '@/app/[lng]/fonts';
 import styles from './Header.module.css';
 import Link from 'next/link';
 
 export default async function Header({ lng }: { lng: string }) {
-  const { t } = await useTranslation(lng, 'Header');
+  const { t } = await getTranslation(lng, 'Header');
 
   return (
     <header className={styles.container}>

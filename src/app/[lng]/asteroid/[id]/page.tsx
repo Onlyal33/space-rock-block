@@ -1,19 +1,20 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslation } from '@/app/i18n';
+import { getTranslation } from '@/app/i18n';
 import OrderButton from '@/components/OrderButton/OrderButton';
 import { fetchtAsteroidData } from '@/services/api';
 import hazard from '../../../../../public/hazard.svg';
 import styles from './page.module.css';
 
 export default async function Asteroid({
-  params: { lng, id },
+  params,
 }: {
-  params: { lng: string; id: number };
+  params: Promise<{ lng: string; id: string }>;
 }) {
+  const { lng, id } = await params;
   const data = await fetchtAsteroidData(id);
-  const { t } = await useTranslation(lng, 'asteroid');
+  const { t } = await getTranslation(lng, 'asteroid');
 
   return (
     <section id="asteroid" className={styles.container}>

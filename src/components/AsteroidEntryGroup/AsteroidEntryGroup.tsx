@@ -32,9 +32,7 @@ export default function AsteroidEntryGroup({
       async (entries: IntersectionObserverEntry[]) => {
         if (entries[0].isIntersecting && !isLoading) {
           setIsLoading(true);
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/feed?page=${page + 1}`,
-          );
+          const res = await fetch(`/api/feed?page=${page + 1}`);
           const fetched = await res.json();
           setPage((p) => p + 1);
           setAstList((prev) => [...prev, ...fetched]);
@@ -46,10 +44,10 @@ export default function AsteroidEntryGroup({
 
     const target = ref.current;
 
-    target && observer.observe(target);
+    if (target) observer.observe(target);
 
     return () => {
-      target && observer.unobserve(target);
+      if (target) observer.unobserve(target);
     };
   }, [page, isLoading]);
 
@@ -63,7 +61,7 @@ export default function AsteroidEntryGroup({
         />
       ))}
       {isLoading && <p style={{ color: 'white' }}>{t('loading')}</p>}
-      <div ref={ref}></div>
+      <div ref={ref} data-testid="feed-sentinel"></div>
     </>
   );
 }

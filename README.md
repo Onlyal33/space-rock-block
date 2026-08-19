@@ -24,6 +24,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+The development server also allows this project's current LAN address,
+`192.168.100.32`. If that address changes, pass the new hostname or IP (without
+a scheme or port):
+
+```bash
+ALLOWED_DEV_ORIGINS=192.168.1.23 npm run dev
+```
+
+Multiple development hosts can be supplied as a comma-separated list.
+
 ## API Keys
 
 The project utilizes [NASA API](https://api.nasa.gov), so if you plan to use it extensively you might consider to get your own (free) api key and put it into the environment variable API_KEY in .env.local.

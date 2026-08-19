@@ -32,18 +32,6 @@ interface CloseApproachData {
   orbiting_body: string;
 }
 
-const mockAsteroidShortData = {
-  id: 465633,
-  name: '465633 (2009 JR5)',
-  size: 485,
-  isHazardous: true,
-  closeApproachDate: '2015-09-08',
-  missDistance: {
-    lunar: 118,
-    kilometers: 45290298,
-  },
-};
-
 /* Neo - Feed
 Retrieve a list of Asteroids based on their closest approach date to Earth.
 GET https://api.nasa.gov/neo/rest/v1/feed?start_date=START_DATE&end_date=END_DATE&api_key=API_KEY
@@ -74,6 +62,7 @@ export async function fetchtAsteroidsFeed(
     }/feed?start_date=${formattedDate}&end_date=${formattedDate}&api_key=${
       process.env.API_KEY || 'DEMO_KEY'
     }`,
+    { next: { revalidate: 3600 } },
   );
 
   const json: AsteroidsFeed = await res.json();
@@ -104,6 +93,7 @@ export async function fetchtAsteroidData(id: string | number) {
     `${process.env.NASA_API_URL}/neo/${id}?api_key=${
       process.env.API_KEY || 'DEMO_KEY'
     }`,
+    { next: { revalidate: 3600 } },
   );
 
   const json: Asteroid = await res.json();

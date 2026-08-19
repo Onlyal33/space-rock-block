@@ -5,18 +5,17 @@ import { fallbackLng, languages, cookieName } from './app/i18n/settings';
 acceptLanguage.languages(languages);
 
 export const config = {
-  // matcher: '/:lng*'
   matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 };
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   let lng;
-  if (req.cookies.has(cookieName))
+  if (req.cookies.has(cookieName)) {
     lng = acceptLanguage.get(req.cookies.get(cookieName)?.value);
+  }
   if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'));
   if (!lng) lng = fallbackLng;
 
-  // Redirect if lng in path is not supported
   if (
     !languages.some(
       (loc) =>
@@ -30,17 +29,15 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (req.headers.has('referer')) {
-    const refererHeader = req.headers.get('referer');
-    if (refererHeader) {
-      const refererUrl = new URL(refererHeader);
-      const lngInReferer = languages.find((l) =>
-        refererUrl.pathname.startsWith(`/${l}`),
-      );
-      const response = NextResponse.next();
-      if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
-      return response;
-    }
+  const refererHeader = req.headers.get('referer');
+  if (refererHeader) {
+    const refererUrl = new URL(refererHeader);
+    const lngInReferer = languages.find((l) =>
+      refererUrl.pathname.startsWith(`/${l}`),
+    );
+    const response = NextResponse.next();
+    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    return response;
   }
 
   return NextResponse.next();

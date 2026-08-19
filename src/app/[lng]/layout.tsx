@@ -2,12 +2,10 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { dir } from 'i18next';
 import { Analytics } from '@vercel/analytics/react';
-import Cart from '@/components/Cart/Cart';
 import Header from '@/components/Header/Header';
-import CartProvider from '@/contexts/cartContext';
 import { languages } from '../i18n/settings';
 import { openSans } from './fonts';
-import styles from './layout.module.css';
+import Providers from './Providers';
 
 export const metadata: Metadata = {
   title: 'Space Rock Blocker',
@@ -18,28 +16,22 @@ export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { lng },
+  params,
 }: {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     lng: string;
-  };
+  }>;
 }) {
+  const { lng } = await params;
+
   return (
     <html lang={lng} dir={dir(lng)}>
       <body className={openSans.className}>
         <Header lng={lng} />
-        <CartProvider>
-          <main className={styles.main}>
-            <div className={styles.earthAndFeedContainer}>
-              <div className={styles.earth} />
-              {children}
-            </div>
-            <Cart lng={lng} />
-          </main>
-        </CartProvider>
+        <Providers lng={lng}>{children}</Providers>
         <Analytics />
       </body>
     </html>

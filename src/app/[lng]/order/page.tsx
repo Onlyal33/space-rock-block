@@ -1,14 +1,15 @@
-import { useTranslation } from '@/app/i18n';
+import { getTranslation } from '@/app/i18n';
 import DistanceUnitsProvider from '@/contexts/distanceUnitsContext';
 import styles from './page.module.css';
 import OrderItems from './OrderItems';
 
 export default async function Order({
-  params: { lng },
+  params,
 }: {
-  params: { lng: string };
+  params: Promise<{ lng: string }>;
 }) {
-  const { t } = await useTranslation(lng, 'Order');
+  const { lng } = await params;
+  const { t } = await getTranslation(lng, 'Order');
 
   return (
     <section className={styles.feedContainer}>

@@ -10,8 +10,8 @@ import {
 
 export type DistanceUnits = 'lunar' | 'kilometers';
 
-const UnitsSwitcherContext = createContext(
-  (distanceUnits: DistanceUnits) => {},
+const UnitsSwitcherContext = createContext<(units: DistanceUnits) => void>(
+  () => undefined,
 );
 
 const DistanceUnitsContext = createContext<DistanceUnits>('lunar');
